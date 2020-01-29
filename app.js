@@ -1,4 +1,5 @@
 "use strict";
+const exports=require('exports');
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getIntents=()=>{
 // Google Assistant deps
