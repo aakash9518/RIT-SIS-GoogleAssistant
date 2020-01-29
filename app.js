@@ -1,6 +1,5 @@
 "use strict";
-const exports=require('exports');
-Object.defineProperty(exports, "__esModule", { value: true });
+//Object.defineProperty(exports, "__esModule", { value: true });
 exports.getIntents=()=>{
 // Google Assistant deps
 const actions_on_google_1 = require("actions-on-google");
