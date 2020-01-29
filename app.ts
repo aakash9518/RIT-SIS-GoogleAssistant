@@ -3,8 +3,8 @@ exports.getIntents = () => {
 
 // Google Assistant deps
 
-const express = require('express')
-const exapp = express()
+
+
 const app = dialogflow({ debug: true });
 //iscn
 //const fs = require('fs');
@@ -115,6 +115,5 @@ app.intent('DOB entry', async (conv, { dob }) => {
 
 
 
-exapp.post('/', express.json(), app)
-exapp.listen(process.env.PORT || 8000)
+
 }
