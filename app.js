@@ -4,6 +4,8 @@ exports.getIntents=()=>{
 // Google Assistant deps
 const actions_on_google_1 = require("actions-on-google");
 const app = actions_on_google_1.dialogflow({ debug: true });
+const express = require('express')
+const exapp = express()
 //iscn
 //const fs = require('fs');
 let path = 'https://sis-scraper-rit-dup-2.herokuapp.com/get_sis_data/';
@@ -11,7 +13,7 @@ let path = 'https://sis-scraper-rit-dup-2.herokuapp.com/get_sis_data/';
 let dobip;
 // Capture Intent
 app.intent('Give me my Internals Report', async (conv) => {
-    // const data = await scrapePage();
+    
     conv.ask(new actions_on_google_1.SimpleResponse({
         text: 'Please enter your USN Number',
         speech: 'Heyy , What is your ID number ?',
@@ -67,8 +69,9 @@ app.intent('DOB entry', async (conv, { dob }) => {
 
 
 
-exapp.post('/', express.json(), app)
+exapp.post('/webhook', express.json(), app)
 exapp.listen(process.env.PORT || 8000)
+console.log("hi")
 return app;
 
 }
