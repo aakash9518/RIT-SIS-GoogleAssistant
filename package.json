@@ -1,7 +1,7 @@
 {
     "name": "msritstudentportal",
     "scripts": {
-      "start": "npm app.js",
+      "start": "node app.js",
       "test":"echo \"Error:No test specified\" && exit 1"
     },
     "engines": {
