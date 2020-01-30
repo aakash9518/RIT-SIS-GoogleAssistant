@@ -19,7 +19,7 @@ app.intent('Give me my Internals Report', async (conv) => {
         speech: 'Heyy , What is your ID number ?',
     }));
 });
-app.intent('USN Entry', async (conv, { usn }) => {
+app.intent('USN Entry', async (conv, { text }) => {
   conv.ask(
     new actions_on_google_1.SimpleResponse({
       text: 'You entered ' + usn + ' , enter your DOB',
@@ -27,7 +27,7 @@ app.intent('USN Entry', async (conv, { usn }) => {
     })
   )
   
-  usnip = conv.parameters[usn].toUpperCase();;
+  usnip = conv.parameters[text].toUpperCase();;
   console.log(usnip);
 });
 path = path + usnip;
