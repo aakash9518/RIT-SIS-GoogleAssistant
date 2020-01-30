@@ -27,7 +27,7 @@ app.intent('USN Entry', async (conv, { usn }) => {
     })
   )
   
-  usnip = conv.parameters(usn).toUpperCase();;
+  usnip = conv.parameters[usn].toUpperCase();;
   console.log(usnip);
 });
 path = path + usnip;
