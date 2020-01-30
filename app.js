@@ -39,9 +39,9 @@ app.intent('DOB entry', async (conv, { dob }) => {
     path = path.substr(0, path.length - 15);
     let a1 = "";
     //for testing only
-    path = 'https://sis-scraper-rit-dup-2.herokuapp.com/get_sis_data/1MS19CS129/2001-03-27';
+    //path = 'https://sis-scraper-rit-dup-2.herokuapp.com/get_sis_data/1MS19CS129/2001-03-27';
     const axios = require("axios");
-    let res = await axios.get('https://sis-scraper-rit-dup-2.herokuapp.com/get_sis_data/1MS19CS129/2001-03-27');
+    let res = await axios.get(path);
     for (var mark in res.data.marks) {
         a1 = a1.concat(res.data.marks[mark].name + " : " + res.data.marks[mark]['final cie'] + "\n");
     }
