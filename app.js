@@ -8,7 +8,7 @@ const express = require('express')
 const exapp = express()
 //iscn
 //const fs = require('fs');
-const path = 'https://sis-scraper-rit-dup-2.herokuapp.com/get_sis_data/';
+let path = 'https://sis-scraper-rit-dup-2.herokuapp.com/get_sis_data/';
 let usnip;
 let dobip;
 // Capture Intent
@@ -20,19 +20,18 @@ app.intent('Give me my Internals Report', async (conv) => {
     }));
 });
 app.intent('USN Entry', async (conv, { usn }) => {
-    conv.data.path=path;
     conv.ask(
         new actions_on_google_1.SimpleResponse({
             text: 'You entered ' + usn + ' , enter your DOB',
             speech: 'What is your Date of Birth?',
         })
     )
-    conv.data.usn = '';
+ conv.data.usn = '';
     conv.data.usn = usn;
-    
+
     usnip = conv.data.usn;
     usnip = usnip.substr(0, path.length - 1);
-    conv.data.path = conv.data.path + usnip;
+    path = path + usnip;
     console.log(usnip);
 });
 
@@ -45,7 +44,7 @@ app.intent('DOB entry', async (conv, { dob }) => {
     conv.data.dob = dob.toString();
     dobip = dob;
     dobip = dobip.substr(0, dobip.length - 15);
-    conv.data.path = conv.data.path + "/" + dobip;
+    path = path + "/" + dobip;
 
     let a1 = "";
     //for testing only
