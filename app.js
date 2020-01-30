@@ -79,12 +79,7 @@ app.intent('DOB entry', async (conv, { dob }) => {
         )
     }
     else {
-        conv.close(
-            new actions_on_google_1.SimpleResponse({
-                text: 'Here you go',
-                speech: 'Hello ' + res.data.name,
-            })
-        )
+        
         conv.close(new actions_on_google_1.BasicCard({
             title: 'CIE Report-' + res.data.name + '-' + res.data.sem,
             text: a1,
