@@ -28,7 +28,9 @@ app.intent('USN Entry', async (conv, { usn }) => {
   )
   
   conv.data.usn=usn;
+  
   usnip=conv.data.usn;
+  usnip = usnip.substr(0, path.length - 1);
   console.log(usnip);
 });
 path = path + usnip;
@@ -39,8 +41,9 @@ app.intent('DOB entry', async (conv, { dob }) => {
     }));
     conv.data.dob=dob.toString();
     dobip = dob;
+    dobip = dobip.substr(0, path.length - 16);
     path = path + "/" + dobip;
-    path = path.substr(0, path.length - 15);
+    
     let a1 = "";
     //for testing only
     //path = 'https://sis-scraper-rit-dup-2.herokuapp.com/get_sis_data/1MS19CS129/2001-03-27';
