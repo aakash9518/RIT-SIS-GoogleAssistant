@@ -70,6 +70,9 @@ app.intent('DOB entry', async (conv, { dob }) => {
 
 
 exapp.post('/webhook', express.json(), app)
+exapp.get('/',(req,res)=>{
+    res.send("hi")
+})
 exapp.listen(process.env.PORT || 8000)
 console.log("hi")
 return app;
