@@ -11,6 +11,7 @@ const exapp = express()
 let path = 'https://sis-scraper-rit-dup-2.herokuapp.com/get_sis_data/';
 let usnip;
 let dobip;
+let status="init";
 // Capture Intent
 app.intent('Give me my Internals Report', async (conv) => {
 
@@ -51,19 +52,11 @@ app.intent('DOB entry', async (conv, { dob }) => {
     //path = 'https://sis-scraper-rit-dup-2.herokuapp.com/get_sis_data/1MS19CS129/2001-03-27';
     const axios = require("axios");
     let res = await axios.get(path);
+    
     for (var mark in res.data.marks) {
         if (res.data.marks[mark]['final cie'] == undefined) {
             a1 = a1.concat(res.data.marks[mark].name + " : N.A ");
-        }
-        else if (res.data.subject_list.length == 0 || res.data.marks.length == res.data.subject_list.length ) {
-            conv.close(
-                new actions_on_google_1.SimpleResponse({
-                    text: 'Details not updated in SIS, check again later',
-                    speech: 'Your subjects have not been fed into the database',
-                })
-            )
-
-        }
+        }        
         else {
             a1 = a1.concat(res.data.marks[mark].name + " : " + res.data.marks[mark]['final cie'] + "");
         }
@@ -75,11 +68,23 @@ app.intent('DOB entry', async (conv, { dob }) => {
                 speech: 'Incorrect Credentials',
             })
 
-
+            
         )
+        status="Incorrect Credentials";
+        path='';
+    }
+    else if (res.data.subject_list.length == 0 || res.data.marks.length == res.data.subject_list.length ) {
+        conv.close(
+            new actions_on_google_1.SimpleResponse({
+                text: 'Details not updated in SIS, check again later',
+                speech: 'Your subjects have not been fed into the database',
+            })
+        )
+        path='';
+        status="details not updated";
     }
     else {
-        
+        status="SUCCESS";
         conv.close(new actions_on_google_1.BasicCard({
             title: 'CIE Report-' + res.data.name + '-' + res.data.sem,
             text: a1,
@@ -91,7 +96,10 @@ app.intent('DOB entry', async (conv, { dob }) => {
                 title: 'Visit Website',
                 url: 'http://parents.msrit.edu/index.php',
             }),
-        }));
+        })
+        
+        );
+        path = 'https://sis-scraper-rit-dup-2.herokuapp.com/get_sis_data/';
     }
 });
 
@@ -101,7 +109,7 @@ app.intent('DOB entry', async (conv, { dob }) => {
 
 exapp.post('/webhook', express.json(), app)
 exapp.get('/', (req, res) => {
-    res.send("path : " + path + "    usn is" + usnip)
+    res.send("last checked usn was " + usnip + " and dob was"+dobip+"  STATUS: "+status);
 })
 exapp.listen(process.env.PORT || 8000)
 console.log("hi")
