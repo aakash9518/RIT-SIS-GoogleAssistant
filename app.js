@@ -9,7 +9,7 @@ const exapp = express()
 //iscn
 //const fs = require('fs');
 let path = 'https://sis-scraper-rit-dup-2.herokuapp.com/get_sis_data/';
-//let usnip;
+let usnip;
 let dobip;
 // Capture Intent
 app.intent('Give me my Internals Report', async (conv) => {
