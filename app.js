@@ -42,7 +42,7 @@ app.intent('DOB entry', async (conv, { dob }) => {
     }));
     conv.data.dob=dob.toString();
     dobip = dob;
-    dobip = dobip.substr(0, path.length - 16);
+    dobip = dobip.substr(0, dobip.length - 16);
     path = path + "/" + dobip;
     
     let a1 = "";
