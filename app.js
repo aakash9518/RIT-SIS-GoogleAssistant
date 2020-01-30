@@ -19,16 +19,16 @@ app.intent('Give me my Internals Report', async (conv) => {
         speech: 'Heyy , What is your ID number ?',
     }));
 });
-// app.intent('USN Entry', async (conv, { usn }) => {
-//   conv.ask(
-//     new SimpleResponse({
-//       text: 'You entered ' + usn + ' , enter your DOB',
-//       speech: 'What is your Date of Birth?',
-//     })
-//   )
-//   usnip = usn;
-// });
-// path = path + usnip;
+app.intent('USN Entry', async (conv, { usn }) => {
+  conv.ask(
+    new actions_on_google_1.SimpleResponse({
+      text: 'You entered ' + usn + ' , enter your DOB',
+      speech: 'What is your Date of Birth?',
+    })
+  )
+  usnip = usn;
+});
+path = path + usnip;
 app.intent('DOB entry', async (conv, { dob }) => {
     conv.ask(new actions_on_google_1.SimpleResponse({
         text: 'You entered ' + dob + ' ',
@@ -45,12 +45,12 @@ app.intent('DOB entry', async (conv, { dob }) => {
     for (var mark in res.data.marks) {
         a1 = a1.concat(res.data.marks[mark].name + " : " + res.data.marks[mark]['final cie'] + "\n");
     }
-    //     conv.close(
-    //       new SimpleResponse({
-    //         text: 'Here you go',
-    //         speech: 'Here is your report card',
-    //       })
-    //     )
+        conv.close(
+          new actions_on_google_1.SimpleResponse({
+            text: 'Here you go',
+            speech: 'Here is your report card',
+          })
+        )
     conv.close(new actions_on_google_1.BasicCard({
         title: 'CIE Report',
         text: a1,
