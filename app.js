@@ -26,7 +26,7 @@ app.intent('USN Entry', async (conv, { usn }) => {
             speech: 'What is your Date of Birth?',
         })
     )
- conv.data.usn = '';
+    conv.data.usn = '';
     conv.data.usn = usn;
 
     usnip = conv.data.usn;
@@ -55,8 +55,17 @@ app.intent('DOB entry', async (conv, { dob }) => {
         if (res.data.marks[mark]['final cie'] == undefined) {
             a1 = a1.concat(res.data.marks[mark].name + " : N.A ");
         }
+        else if (res.data.subject_list.length == 0 || res.data.marks.length == res.data.subject_list.length ) {
+            conv.close(
+                new actions_on_google_1.SimpleResponse({
+                    text: 'Details not updated in SIS, check again later',
+                    speech: 'Your subjects have not been fed into the database',
+                })
+            )
+
+        }
         else {
-            a1 = a1.concat(res.data.marks[mark].name + " : " + res.data.marks[mark]['final cie'] + "\n ");
+            a1 = a1.concat(res.data.marks[mark].name + " : " + res.data.marks[mark]['final cie'] + "");
         }
     }
     if (res.data.name == undefined) {
@@ -73,7 +82,7 @@ app.intent('DOB entry', async (conv, { dob }) => {
         conv.close(
             new actions_on_google_1.SimpleResponse({
                 text: 'Here you go',
-                speech: 'Hello '+res.data.name,
+                speech: 'Hello ' + res.data.name,
             })
         )
         conv.close(new actions_on_google_1.BasicCard({
