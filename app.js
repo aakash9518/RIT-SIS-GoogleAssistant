@@ -1,6 +1,6 @@
 "use strict";
 //Object.defineProperty(exports, "__esModule", { value: true });
-exports.getIntents=()=>{
+
 // Google Assistant deps
 const actions_on_google_1 = require("actions-on-google");
 const app = actions_on_google_1.dialogflow({ debug: true });
@@ -75,6 +75,5 @@ exapp.get('/',(req,res)=>{
 })
 exapp.listen(process.env.PORT || 8000)
 console.log("hi")
-return app;
 
-}
+
