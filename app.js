@@ -22,7 +22,7 @@ app.intent('Give me my Internals Report', async (conv) => {
 app.intent('USN Entry', async (conv, { text }) => {
   conv.ask(
     new actions_on_google_1.SimpleResponse({
-      text: 'You entered ' + usn + ' , enter your DOB',
+      text: 'You entered ' + text + ' , enter your DOB',
       speech: 'What is your Date of Birth?',
     })
   )
