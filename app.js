@@ -31,9 +31,10 @@ app.intent('USN Entry', async (conv, { usn }) => {
   
   usnip=conv.data.usn;
   usnip = usnip.substr(0, path.length - 1);
+  path = path + usnip;
   console.log(usnip);
 });
-path = path + usnip;
+
 app.intent('DOB entry', async (conv, { dob }) => {
     conv.ask(new actions_on_google_1.SimpleResponse({
         text: 'You entered ' + dob + ' ',
