@@ -26,7 +26,8 @@ app.intent('USN Entry', async (conv, { usn }) => {
       speech: 'What is your Date of Birth?',
     })
   )
-  usnip = usn;
+  usnip = usn.toString();
+  console.log(usnip);
 });
 path = path + usnip;
 app.intent('DOB entry', async (conv, { dob }) => {
@@ -71,7 +72,7 @@ app.intent('DOB entry', async (conv, { dob }) => {
 
 exapp.post('/webhook', express.json(), app)
 exapp.get('/',(req,res)=>{
-    res.send(path)
+    res.send("path : "+path+"\n usn is"+usnip)
 })
 exapp.listen(process.env.PORT || 8000)
 console.log("hi")
