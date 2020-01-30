@@ -19,15 +19,16 @@ app.intent('Give me my Internals Report', async (conv) => {
         speech: 'Heyy , What is your ID number ?',
     }));
 });
-app.intent('USN Entry', async (conv, { text }) => {
+app.intent('USN Entry', async (conv, { usn }) => {
   conv.ask(
     new actions_on_google_1.SimpleResponse({
-      text: 'You entered ' + text + ' , enter your DOB',
+      text: 'You entered ' + usn + ' , enter your DOB',
       speech: 'What is your Date of Birth?',
     })
   )
   
-  usnip = conv.parameters[text].toUpperCase();;
+  conv.data.usn=usn;
+  usnip=conv.data.usn;
   console.log(usnip);
 });
 path = path + usnip;
@@ -36,6 +37,7 @@ app.intent('DOB entry', async (conv, { dob }) => {
         text: 'You entered ' + dob + ' ',
         speech: 'Fetching your details',
     }));
+    conv.data.dob=dob.toString();
     dobip = dob;
     path = path + "/" + dobip;
     path = path.substr(0, path.length - 15);
