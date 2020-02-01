@@ -9,9 +9,9 @@ const exapp = express()
 //iscn
 //const fs = require('fs');
 let path = 'https://sis-scraper-rit-dup-2.herokuapp.com/get_sis_data/';
-let usnip;
-let dobip;
-let status="init";
+let usnip:string;
+let dobip:string;
+let convstatus="init";
 // Capture Intent
 app.intent('Give me my Internals Report', async (conv) => {
 
@@ -80,7 +80,7 @@ app.intent('DOB entry', async (conv, { dob }) => {
 
             
         )
-        status="Incorrect Credentials";
+        convstatus="Incorrect Credentials";
         path='';
     }
     else if (res.data.subject_list.length == 0 || res.data.marks.length == res.data.subject_list.length ) {
@@ -91,10 +91,10 @@ app.intent('DOB entry', async (conv, { dob }) => {
             })
         )
         path='';
-        status="details not updated";
+        convstatus="details not updated";
     }
     else {
-        status="SUCCESS";
+        convstatus="SUCCESS";
         conv.close(new actions_on_google_1.BasicCard({
             title: 'CIE Report-' + res.data.name + '-' + res.data.sem,
             text: a1,
