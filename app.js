@@ -41,7 +41,7 @@ app.intent('USN Entry', async (conv, { usn }) => {
     conv.data.usn = usn;
 
     usnip=conv.data.usn.toString();
-    usnip = usnip.substring(0, usnip.length - 1);
+    usnip = usnip.substring(0, usnip.length);
     path = path + usnip;
     console.log(usnip);}
 });
