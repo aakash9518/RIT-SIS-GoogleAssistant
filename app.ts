@@ -9,8 +9,8 @@ const exapp = express()
 //iscn
 //const fs = require('fs');
 let path = 'https://sis-scraper-rit-dup-2.herokuapp.com/get_sis_data/';
-let usnip:string;
-let dobip:string;
+let usnip;
+let dobip;
 let convstatus="init";
 // Capture Intent
 app.intent('Give me my Internals Report', async (conv) => {
@@ -119,7 +119,7 @@ app.intent('DOB entry', async (conv, { dob }) => {
 
 exapp.post('/webhook', express.json(), app)
 exapp.get('/', (req, res) => {
-    res.send("last checked usn was " + usnip + " and dob was"+dobip+"  STATUS: "+status);
+    res.send("last checked usn was " + usnip + " and dob was"+dobip);
 })
 exapp.listen(process.env.PORT || 8000)
 console.log("hi")
