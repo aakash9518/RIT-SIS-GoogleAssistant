@@ -9,8 +9,8 @@ const exapp = express()
 //iscn
 //const fs = require('fs');
 let path = 'https://sis-scraper-rit-dup-2.herokuapp.com/get_sis_data/';
-let usnip;
-let dobip;
+let usnip='';
+let dobip='';
 let convstatus="init";
 // Capture Intent
 app.intent('Give me my Internals Report', async (conv) => {
@@ -40,8 +40,8 @@ app.intent('USN Entry', async (conv, { usn }) => {
     conv.data.usn = '';
     conv.data.usn = usn;
 
-    
-    usnip = conv.data.usn.substr(0, conv.data.usn.length - 1);
+    usnip=conv.data.usn;
+    usnip = usnip.substring(0, usn.length - 1);
     path = path + usnip;
     console.log(usnip);}
 });
@@ -53,8 +53,9 @@ app.intent('DOB entry', async (conv, { dob }) => {
     }));
     conv.data.dob = '';
     conv.data.dob = dob.toString();
-    //dobip = conv.data.dob;
-    dobip = conv.data.dob.substr(0, conv.data.dob.length - 15);
+    dobip = conv.data.dob;
+    
+    dobip = dobip.substring(0, dobip.length - 15);
     path = path + "/" + dobip;
 
     let a1 = "";
