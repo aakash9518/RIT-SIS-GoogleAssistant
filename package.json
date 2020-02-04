@@ -1,13 +1,13 @@
 {
   "name": "msritstudentportal",
   "scripts": {
-    "start": "node app.ts",
+    "start": "node app.js",
     "test": "echo \"Error:No test specified\" && exit 1"
   },
   "engines": {
     "node": "8"
   },
-  "main": "app.ts",
+  "main": "app.js",
   "dependencies": {
     "actions-on-google": "^2.12.0",
     "axios": "^0.19.2",
