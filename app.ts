@@ -40,8 +40,8 @@ app.intent('USN Entry', async (conv, { usn }) => {
     conv.data.usn = '';
     conv.data.usn = usn;
 
-    usnip = conv.data.usn;
-    usnip = usnip.substr(0, path.length - 1);
+    
+    usnip = conv.data.usn.substr(0, usnip.length - 1);
     path = path + usnip;
     console.log(usnip);}
 });
@@ -53,8 +53,8 @@ app.intent('DOB entry', async (conv, { dob }) => {
     }));
     conv.data.dob = '';
     conv.data.dob = dob.toString();
-    dobip = dob;
-    dobip = dobip.substr(0, dobip.length - 15);
+    //dobip = conv.data.dob;
+    dobip = conv.data.dob.substr(0, dobip.length - 15);
     path = path + "/" + dobip;
 
     let a1 = "";
