@@ -84,7 +84,7 @@ app.intent('DOB entry', async (conv, { dob }) => {
         convstatus="Incorrect Credentials";
         path='';
     }
-    else if (res.data.subject_list.length == 0 || res.data.marks.length == res.data.subject_list.length ) {
+    else if (res.data.subject_list.length == 0 || res.data.marks.length != res.data.subject_list.length ) {
         conv.close(
             new actions_on_google_1.SimpleResponse({
                 text: 'Details not updated in SIS, check again later',
