@@ -63,7 +63,7 @@ app.intent('DOB entry', async (conv, { dob }) => {
     //path = 'https://sis-scraper-rit-dup-2.herokuapp.com/get_sis_data/1MS19CS129/2001-03-27';
     const axios = require("axios");
     let res = await axios.get(path);
-    
+    console.log(res)
     for (var mark in res.data.marks) {
         if (res.data.marks[mark]['final cie'] == undefined) {
             a1 = a1.concat(res.data.marks[mark].name + " : N.A ");
@@ -89,7 +89,7 @@ app.intent('DOB entry', async (conv, { dob }) => {
             new actions_on_google_1.SimpleResponse({
                 text: 'Details not updated in SIS, check again later',
                 speech: 'Your subjects have not been fed into the database',
-            })
+            }) 
         )
         path='';
         convstatus="details not updated";
